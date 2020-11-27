@@ -18,10 +18,11 @@ def images():
 
 def tf_classify(name):
     print("detecting %s..." % name)
-    p = subprocess.Popen(["python", "./models/tutorials/image/imagenet/classify_image.py", "--model_dir=.", "--image_file=" + name], 
+    p = subprocess.Popen(["python", "./tensorflow-models/tutorials/image/imagenet/classify_image.py", "--model_dir=.", "--image_file=" + name], 
         stdout=subprocess.PIPE)
     out, _ = p.communicate()
-    return out.split("\n")[1:-1]
+    out = out.decode("utf-8")
+    return out.split("\r\n")[1:-1]
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
